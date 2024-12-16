@@ -1,5 +1,5 @@
 ## First specify the packages of interest
-packages <- c("BoolNet")
+packages <- c("BoolNet", "VennDiagram")
 
 ## Now load or install & load all
 package_check <- lapply(
@@ -22,7 +22,7 @@ attr_info <- getAttractors(
   shine,
   type = "synchronous",
   method = "random",
-  startStates = 10000
+  startStates = 100000
 )
 
 active_in_all_quiescent <- generateState(shine, c("AA" = 1), default = 1)
@@ -30,7 +30,6 @@ active_in_any_quiescent <- generateState(shine, c("AA" = 0), default = 0)
 for(i in seq_along(attr_info$attractors)){
 	attractor <- getAttractorSequence(attr_info, i)
 	if(is_quiescent_attr(attractor)){
-    print(i)
     for(i in rownames(attractor)){
       active_in_all_quiescent <- active_in_all_quiescent & attractor[i, ]
       active_in_any_quiescent <- active_in_any_quiescent | attractor[i, ]
@@ -40,8 +39,25 @@ for(i in seq_along(attr_info$attractors)){
 
 
 print("The nodes active in all quiescent attractors are:")
-# print(active_in_all_quiescent)
 cnames <- colnames(active_in_all_quiescent)
-print(cnames[active_in_all_quiescent])
+active_in_all <- cnames[active_in_all_quiescent]
+print(active_in_all)
 print("The nodes inactive in all quiescent attractors are:")
-print(cnames[!active_in_any_quiescent])
+inactive_in_all <- cnames[!active_in_any_quiescent]
+print(inactive_in_all)
+
+# Find the genes that are active in some but not all quiescent attractor states.
+groups <- list(
+  active = cnames[active_in_any_quiescent],
+  inactive = cnames[!active_in_all_quiescent]
+)
+
+active_in_some_not_all <- intersect(groups$active, groups$inactive)
+print("The nodes inactive in some, but not all quiescent attractors are:")
+print(active_in_some_not_all)
+save(
+  active_in_all,
+  inactive_in_all,
+  active_in_some_not_all,
+  file = "quiescence.RData"
+)
