@@ -18,17 +18,17 @@ shine <- loadNetwork("networks//shine_q.bnet.txt")
 path1 <- getPathToAttractor(shine, initial_quiescence)
 
 # Now add catecholamine to the last state i the attractor
-q_hyp <- tail(path1, n = 1)
-q_hyp["O2"] <- 0
+q_inf <- tail(path1, n = 1)
+q_inf["IL6"] <- 1
 
 # Which state will we reach?
-path_hyp <- getPathToAttractor(shine, q_hyp)
+path_inf <- getPathToAttractor(shine, q_inf)
 
 png(
-    file = "plots//hypoxia_effect.png", # nolint: indentation_linter.
+    file = "plots//il6_effect.png", # nolint: indentation_linter.
     width = 500,
     height = 4000
 )
-plotSequence(sequence = path_hyp, title = "Hypoxia effect")
+plotSequence(sequence = path_noflow, title = "IL6 effect")
 # grid.table(t(path1))
 dev.off()
