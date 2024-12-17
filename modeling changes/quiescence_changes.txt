@@ -88,6 +88,11 @@ New: Ca2, !SERCA & IP3R & PIEZO1 & TRPV4 & Cav
 # to quiescence we where observing an atypical activation of MLC caused
 # by Ca2+ increases
 
+g)
+Old:O2, O2 | SOD
+New: O2, O2 
+# SOD is not enough to suply sufficient oxygen
+
 Endothelial dysfunction
 Functional endothelial cells produce both nitric oxide and prostacyclin.
 endothelyal_dysfunction, !NO | !PGI2

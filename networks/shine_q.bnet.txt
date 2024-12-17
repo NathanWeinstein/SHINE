@@ -117,7 +117,7 @@ NOX5, O2 & Ca2 & PIP2
 NPR1, VEGFA
 NRF2, ERK1
 NE, PNMT | NE # Can be a microenvironmental signal
-O2, O2 | SOD
+O2, O2 # SOD is not enough to suply sufficient oxygen
 Occludin, ZO1 | !ADD # ADD is activated by RAC1 which preserves barrie function this cannot be so strict
 Superoxide, NOX2 | NOX4 | NOX5
 OXGR1, a_ketoglutarate
