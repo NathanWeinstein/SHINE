@@ -1,0 +1,149 @@
+Understanding our Boolean model
+
+Unless otheways stated: 
+0 represents a molecule that is not active enough to elicit certain effects
+1 represents a concentration or activity level that is high enough to cause 
+the above effects.
+
+Interpreting a BoolNet update rule
+The form of an update rule is:
+target, factors
+Where target is the molecule or node that is affected by the factors.
+factors is a Boolean function that determinates if the target will be active or 
+inactive after an update.
+
+The boolean opperators are ! (Not), & (And), and | (Or)
+! Is usually used to represent an inibitory regulation
+Example:
+target, !inhibitor
+If the inhibitor is not active, the target will be active.
+
+& usually groups several interdependent conditions 
+Example:   
+The complex formed by B and LEF1 activates the transcription of claudin_1
+claudin_1, B & LEF1
+
+| represents independent conditions to regulate the activity of a target
+Example:
+Gene1 has two enhancers, enhancer 1 can be activated by TF1, and enhancer 2 can be activated by TF2.
+Gene1, TF1 | TF2
+
+The conditions that should result in endothelial quiescence are the following:
+ANG1 = 1, # Pericites cover mature continuos capillaries and secrete ANG1.
+heparan_sulfate = 1, # The healthy glycocalyx contains enough HS.
+O2 = 1, # Normoxic conditions.
+WNT7a = 1, # Canonical WNT signaling appears to be important for EC quiescence.
+ShearStress = 1, # In our model this represents the normal shear stress caused by 
+EPI = 0,
+NE = 0, Catecholamines should result in non-quiescent behavior
+constant laminar blood flow in the capillaries.
+Under these conditions, we expect high endothelial barrier function, 
+low oxidative stress, no glycocalyx function and no endothelial dysfunction.
+
+For endothelial barrier function:
+This is the update rule for endothelial barrier function:
+barrier_function, ZO1 & CDH5 & (Claudin1_3 | Claudin5) & Occludin
+What this means is that according to our model both adherence and tight junctions
+must be stable. Adherence junctions require VE-cadherin (CDH5) and ZO1, 
+tight junctions require ZO1, occludin, and a claudin.
+
+a)
+Old: CDH5, !SRC & !ACTB & Ca2 & (CREB1 | RRAS | FZD7 | FAK | ADD | AF6 | KRIT1 | RAC1)
+New: CDH5, !SRC & !ACTB & (CREB1 | RRAS | FZD7 | FAK | ADD | AF6 | KRIT1 | RAC1) 
+# Wat this implies is that basal Ca2+ is enough for VE-cadherin function
+b)
+Old: Occludin, ZO1 & !ADD
+New: Occludin, ZO1 | !ADD 
+# ADD is activated by RAC1 which preserves barrier function. 
+# Therefore, ADD should not be a dominant inhibitor.
+c)
+Old: SRC, !mDia & ( ARRB1 | TSAd | JAK )
+New: SRC, !mDia & ARRB1 & (TSAd | JAK ) 
+# SRC needs to be activated by different pathways to reach the threshold
+# to inhibit VE-cadherin
+
+For oxydative stress and glycocalyx shedding which are closely related,
+the update rules are:
+oxidative_stress, Superoxide | H2O2
+glycocalyx_shedding, !Syndecan1
+
+Required changes:
+
+d)
+Old: MMP24_25, lysophospholypids
+New: MMP24_25, lysophospholypids & ( Superoxide | H2O2 ) 
+# ROS oxidate lysophospholypids increasing the affinity of 
+# MMP24_25 for these substrates
+
+e)
+Old: NFkB, PECAM1 | NOX4
+New: NFkB, PECAM1 & NOX4 
+# To avoid ectopic HIF1A activation because 
+# normal shear stress activates PECAM1
+
+f)
+Old: Ca2, !SERCA & (IP3R | PIEZO1 | TRPV4 | Cav)
+New: Ca2, !SERCA & IP3R & PIEZO1 & TRPV4 & Cav 
+# This prevents ectopic activation. Additionally during the transition 
+# to quiescence we where observing an atypical activation of MLC caused
+# by Ca2+ increases
+
+g)
+Old:O2, O2 | SOD
+New: O2, O2 
+# SOD is not enough to suply sufficient oxygen
+
+Endothelial dysfunction
+Functional endothelial cells produce both nitric oxide and prostacyclin.
+endothelyal_dysfunction, !NO | !PGI2
+
+Changes:
+
+g)
+Old: COX1, AA & !NO
+New: COX1, AA | !NO 
+# For COX1, the NO threshold is high, the & resulted 
+# in either PGI2 or NO production. 
+# This is a feedback mechanism that regulates both NO and PGI2. 
+# Another option would be to add another level to NO, like NO_high
+# that would inhibit COX1
+
+We did not have cAMP production.
+
+Changes:
+
+h) 
+Old: AC, (PKC | Gs | Gq | CAM) & !Gi
+New: AC, PKC | CAM | Gs | ( Gq & !Gi )  
+# This was too strict, not enough cAMP
+
+
+Constant blood flow-associated shear stess (ShearStress = 1)
+maintains quiescence through several mechanisms, the following 
+changes are needed to include those mechanisms in the model.
+
+i)
+Old: PI3K, Gi | ( TIE2 & Lactate) | VEGFR12 | AXL | JAK
+New: PI3K, Gi | ( TIE2 & Lactate) | VEGFR12 | AXL | JAK | PECAM1
+# PECAM1 activates PI3K, resulting in eNOS and AKT1 simulation
+
+j) Found a mistake:
+Old: TLE1, Bcatenin
+New: TLE1, !Bcatenin
+# B catenin displaces TLE1, preventing it from inhibiting LEF1
+
+k) Ang1 promotes the activation of mDia through RhoA, inhibiting SRC-mediated 
+VE-cadherin phospphorylation. In our model RHOA activity is associated with 
+incrreassed permeability, perhaps a diirect interaction from TIE2 to mDia skiping
+ RhoA would be less problematic here. Another option would be: 
+ TIE2 --| RHOA --| mDia
+
+https://doi.org/10.1016/j.devcel.2007.10.019
+
+
+Old: 
+mDia, RHOA
+RHOA, !PKGIB & !CDC42 & !ArhGAP29 & !RhoGDIa & ( GEFH1 | TIE2 | SRC | G12)
+New: 
+mDia, TIE2
+RHOA, !PKGIB & !CDC42 & !ArhGAP29 & !RhoGDIa & ( GEFH1 | SRC | G12)

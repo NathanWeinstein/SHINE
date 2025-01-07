@@ -1,0 +1,22 @@
+Old: 
+NOX2, O2 & ( p47phox | PKC ) & ( !NRF2 | !propionylLcarnitine )
+NOX4, O2 & HIF1
+NOX5, O2 & Ca2 & PIP2
+Suggesed new update rules where even under very hypoxic conditions, 
+the basal concentration of oxygen is sufficient to activate the NOX enzymes:
+NOX2, ( p47phox | PKC ) & ( !NRF2 | !propionylLcarnitine )
+NOX4, HIF1
+NOX5, Ca2 & PIP2
+O2 represents normoxia in our model. Hypoxia actually causes oxidative stress
+(https://ri.conicet.gov.ar/bitstream/handle/11336/40230/CONICET_Digital_Nro.41f41e84-3f10-4ca8-b942-c13b0338f4f3_A.pdf?sequence=2 
+see page 19 “under hypoxia, the mitochondrial complex III suffers a conformational
+change that would facilitate the interaction between O2 and ubisemiquinone, resulting 
+in an increase of O2•− formation (Guzy et al., 2005). Others also consider complex II 
+as relevant for ROS formation during hypoxia exposure (Paddenberg et al., 2003). 
+It was proposed that this complex switches its catalytic activity from succinate 
+dehydrogenase to fumarate reductase at diminished oxygen levels. 
+This would not only cause succinate to accumulate but additionally will cause ROS 
+generation because fumarate reductase has been demonstrated to be a powerful O2•− 
+generator”)
+Also, HIF1 directly activates NOX4 
+(https://www.molbiolcell.org/doi/10.1091/mbc.e09-12-1003)

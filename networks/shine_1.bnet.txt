@@ -1,0 +1,207 @@
+targets, factors
+AA, PLA2
+AC, PKC | CAM | Gs | ( Gq & !Gi )  # This was too strict, not enough cAMP
+ACTB, ( HSP27 | RHOA ) & !CALD1
+ACTG1, Cofilin & !CALD1
+ADD, RAC1
+ADRA1, EPI | NE
+ADRA2, EPI | NE
+ADRB, EPI | NE
+AF6, RAP1
+AKAP, PKA
+AKT1, PI3K
+a_ketoglutarate, a_ketoglutarate
+ANG1, ANG1
+ANG2, KLF2 & ETS & FOXO1 & HIF1 & AP1
+AP1, ERK1 | ROR2
+ARRB1, Gi
+ASFSF2, PKC
+AXINcomplex, Axin2 & !(DVL1 & LRP5)
+AXL, SRC | Lactate
+ArhGAP29, RADIL
+Axin2, LEF1
+Bcatenin, (AF6 | ADD | KRIT1) & !AXINcomplex & !BTRC
+BH4, BH4
+BKca, PKGIB
+BTRC, BTRC
+CALD1, !ERK1 & !CAM
+CAM, Ca2
+cAMP, AC | sAC
+CDC42, DAAM1 | FYN
+CDH5, !SRC & !ACTB & (CREB1 | RRAS | FZD7 | FAK | ADD | AF6 | KRIT1 | RAC1) # Basal Ca2+ enough for VE-cadherin function
+CEBPB, pSTAT3
+cGMP, sGC
+Claudin1_3, Bcatenin & ZO1
+Claudin5, Bcatenin & ZO1 & !FOXO1
+COX1, AA | !NO # The NO threshold is high this needs thought
+CPI17, PKC
+CREB1, cAMP & !PDE4D & !O2
+CREB3, cAMP
+Ca2, !SERCA & IP3R & PIEZO1 & TRPV4 & Cav # This prevents ectopic activation.
+Calcineurin, CAM | Ca2
+Cav, K_hyperpolarisation
+Cofilin, RAC1
+DAAM1, DVL1
+DAG, PLC
+DDC, LDOPA & CREB1
+DKK1, DKK1
+DO, DDC
+DVL1, FZD7 | ROR2 | (FZD5 & LRP5)
+DBH, DO & CREB1
+eNOS, O2 & BH4 & LArg & ( CAM | CREB1 | SRC | AKT1 | PKA | PKC ) & !pSTAT3
+EPAC1, cAMP
+ERK1, MEK | (ACTG1 & !ACTB)
+ETS, ERK1
+EPI, DBH | EPI # Can be a microenvironmental signal
+FAK, Integrin & !TIE2
+FOXO1, !ADD & !AKT1
+FYN, NCK | ShearStress # Laminar constant flow activates FYN
+FZD5, WNT5a
+FZD7, WNT7a
+Fe2, Fe2
+FilGAP, ROCK
+G12, TP
+GAB1, PIP3
+GEFH1, PAC
+GRB2, SHP2 & GAB1
+Gi, ADRA2 | (ADRB & PKA) | S1PR1 | SUCNR1 
+Gq, ADRA1 | ShearStress | TP | OXGR1 | SUCNR1
+Gs, IP | (ADRB & !PKA)
+H2O2, SOD
+HCO3, HCO3
+heparan_sulfate, heparan_sulfate
+HIF1, HIF1A & HIF1B
+HIF1A, NFkB & !HIF1Au
+HIFIAh, HIF1A & PHD1
+HIF1Au, HIFIAh & VHL
+HIF1B, 1
+HSP27, MAPKAPK2 & H2O2
+IGF, IGF
+IL6, !PPARB & (AP1 & CEBPB & NFkB & NFAT & CREB1)
+IL6R, IL6
+IL6ST, IL6R
+Integrin, ANG2 & ShearStress
+IP, PGI2
+IP3, PLC
+IP3R, IP3 & !IRAG & !PKGIB
+IRAG, PKGIB
+JAK, IL6ST
+K_hyperpolarisation, BKca
+KLF2, ShearStress
+KRIT1, RAP1
+LArg, LArg
+LCit, eNOS
+LDOPA, TH
+LTyr, LTyr
+LEF1, Bcatenin & !TLE1
+LRP5, WNT7a & ! DKK1
+Lactate, Lactate
+lysophospholypids, PLA2
+MAPK14, MKK3
+MAPKAPK2, MAPK14
+mDia, TIE2
+MEK, RAF
+MKK3, PAK
+MLC, MLCK & (!MLCP | !CALD1)
+MLCK, CAM
+MLCP, !ROCK & !CPI17
+MMP2_9_10, ETS
+MMP24_25, lysophospholypids & ( Superoxide | H2O2 ) # ROS upregulate MMP24_25
+NCK, VEGFR22
+NFAT, Calcineurin
+NFkB, PECAM1 & NOX4 # To avoid ectopic HIF1A activation
+NO, eNOS
+NOX2, ( p47phox | PKC ) & ( !NRF2 | !propionylLcarnitine )
+NOX4, HIF1
+NOX5, Ca2 & PIP2
+NPR1, VEGFA
+NRF2, ERK1
+NE, PNMT | NE # Can be a microenvironmental signal
+O2, O2 # SOD is not enough to suply sufficient oxygen
+Occludin, ZO1 | !ADD # ADD is activated by RAC1 which preserves barrie function this cannot be so strict
+Superoxide, NOX2 | NOX4 | NOX5
+OXGR1, a_ketoglutarate
+p120_catenin, AF6 & KRIT1
+p47phox, SRC
+PAC, RAC1
+PAK, CDC42
+PDE4D, PDE4D
+PECAM1, CDH5 & FYN
+PGH2, COX1
+PGI2, PTGIS
+PHD1, O2 & a_ketoglutarate & Fe2
+PI3K, Gi | ( TIE2 & Lactate) | VEGFR12 | AXL | JAK | PECAM1
+PIEZO1, ShearStress
+PIP2, PIP2
+PIP3, PIP2 & PI3K
+PKA, cAMP
+PKC, Ca2 & ( DAG | IGF )
+PKGIB, cGMP
+PLA2, Gq & Phospholypid
+PLC, Gq | ROR2 | VEGFR22 | PIP2
+PLVAP, !Bcatenin
+PNMT, EPI & CREB1
+PPARB, PGI2
+propionylLcarnitine, 1
+pSTAT3, SRC | JAK | VEGFR22
+PTGIS, PGH2
+Phospholamban, !PKGIB
+Phospholypid, 1
+RAC1, !FilGAP & ( VASP | SOS1 | ShearStress | FZD5 | DVL1 | AKAP | TIAM1 | VAV2 )
+RADIL, RASIP1
+RAF, !PKA & ( RAS | SRC | PKC | PKGIB )
+RAP1, EPAC1
+RAS, PKC | SOS1
+RASIP1, RAP1
+RHOA, !PKGIB & !CDC42 & !ArhGAP29 & !RhoGDIa & ( GEFH1 | SRC | G12 )
+ROCK, RHOA & !PKGIB
+ROR2, WNT5a
+RRAS, !CREB3
+RhoGDIa, ZNF185
+sAC, Ca2 & HCO3 & !PDE4D
+sGC, NO
+sFRP, sFRP
+S1PR1, S1P
+SERCA, !Phospholamban
+SHP2, JAK | PECAM1
+S1P, S1P
+SLC2A1, Bcatenin
+SOD, Superoxide
+SOS1, GRB2 & GAB1
+SRC, !mDia & ARRB1 & ( TSAd | JAK ) # SRC needs to be activated by different pathways to reach the threshold?
+SUCNR1, Succinate
+ShearStress, ShearStress
+Succinate, H2O2 | PHD1
+Syndecan1, heparan_sulfate & !MMP24_25
+TBXAS1, PGH2
+TF, AP1 & NFkB & ETS & NFAT
+TH, LTyr & CREB1
+TIAM1, RAP1 | PIP3
+TIE1, ANG1 & Integrin
+TIE2, ( TIE1 | ANG1 ) & !ANG2 & ( ETS | KLF2 )
+TLE1, !Bcatenin
+TP, TXA2
+TRPV4, ShearStress
+TSAd, VEGFR22
+TXA2, TBXAS1
+VASP, PKA | PKGIB
+VAV2, RAP1
+VEGFA, ((VegfA & ASFSF2) | VEGFA) & !VEGFR1s & ( !VEGFR11 | !VEGFR12 )
+VEGFR11, VegfR1
+VEGFR12, VegfR1 & VegfR2
+VEGFR1s, VegfR1
+VEGFR22, VEGFA & ( heparan_sulfate | Lactate )
+VHL, 1
+VegfA, ( pSTAT3 | FOXO1 | KLF2 | HIF1 ) & !NFAT
+VegfR1, HIF1
+VegfR2, FAK & O2
+vWF, ETS & KLF2 & NFAT & !NFkB
+WNT5a, WNT5a
+WNT7a, WNT7a
+ZNF185, PKA
+ZO1, (VASP | ADD | AF6) & !pSTAT3
+barrier_function, ZO1 & CDH5 & (Claudin1_3 | Claudin5) & Occludin
+oxidative_stress, Superoxide | H2O2
+glycocalyx_shedding, !Syndecan1
+endothelial_dysfunction, !NO | !PGI2
+quiescent, barrier_function & !oxidative_stress & !glycocalyx_shedding & !endothelial_dysfunction
