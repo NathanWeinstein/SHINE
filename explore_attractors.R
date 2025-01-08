@@ -89,3 +89,6 @@ save(
     endothelial_dysfunction,
     file = "attractor_e.RData"
 )
+
+# To print the characteristics use:
+# noquote(paste(cnames[quiescence$all], collapse=", "))

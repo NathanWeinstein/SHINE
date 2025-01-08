@@ -19,7 +19,7 @@ attr_info <- getAttractors(
   shine,
   type = "synchronous",
   method = "random",
-  startStates = 10000
+  startStates = 100000
 )
 
 save(
